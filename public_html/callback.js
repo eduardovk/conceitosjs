@@ -10,7 +10,7 @@ function executar_exemplo(div1, div2) {
     
     
 // simula uma requisicao GET a um webservice com tempo de resposta de 1 segundo
-    function getPessoas(div, arrayPessoas) {
+    function getPessoas(div) {
         document.getElementById(div).innerHTML = '<i>buscando...</i>';
         setTimeout(() => {
             var resultado = '';

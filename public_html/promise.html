@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Promise</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    <body>
+        <h1>Utilizando Promise</h1>
+        <hr><br>
+        <b>Requisicao GET e POST de forma síncrona utilizando Promise</b>
+        <div id="div1">
+        </div>
+        <br>
+
+        <pre>
+<span class="ST0">// Exemplo de utilizacao de Promise em simulacao de requisicao externa (mesma situação da Callback)</span>
+
+<span class="keyword">function</span> <span class="ST1">executar_exemplo</span>(div1) {
+
+<span class="ST2">// simula uma tabela de pessoas em um db</span>
+    <span class="keyword">var</span> pessoas = [
+        {id: <span class="constant">1</span>, nome: <span class="string">&#39;</span><span class="string">João</span><span class="string">&#39;</span>, idade: <span class="constant">45</span>},
+        {id: <span class="constant">2</span>, nome: <span class="string">&#39;</span><span class="string">Felipe</span><span class="string">&#39;</span>, idade: <span class="constant">28</span>}
+    ];
+    
+    
+<span class="ST2">// simula uma requisicao GET a um webservice com tempo de resposta de 1 segundo</span>
+    <span class="keyword">function</span> <span class="ST1">getPessoas</span>(div) {
+        <span class="ST3">document</span>.getElementById(div).innerHTML = <span class="string">&#39;</span><span class="string">&lt;i&gt;buscando...&lt;/i&gt;</span><span class="string">&#39;</span>;
+        setTimeout(() =&gt; {
+            <span class="keyword">var</span> resultado = <span class="string">&#39;</span><span class="string">&#39;</span>;
+            pessoas.forEach((pessoa, index) =&gt; {
+                resultado += <span class="string">`</span><span class="string">id: </span>${pessoa.id}<span class="string">  nome: </span>${pessoa.nome}<span class="string">  idade: </span>${pessoa.idade}<span class="string">&lt;br&gt;</span><span class="string">`</span>;
+            });
+            <span class="ST3">document</span>.getElementById(div).innerHTML = resultado;
+        }, <span class="constant">1000</span>);
+    }
+
+<span class="ST2">// simula um POST a um webservice com tempo de resposta de 2 segundos</span> 
+<span class="ST2">// e retorna uma Promise</span> 
+    <span class="keyword">function</span> <span class="ST1">postPessoa</span>(pessoa, div) {
+        <span class="ST3">document</span>.getElementById(div).innerHTML = <span class="string">`</span><span class="string">&lt;i&gt;inserindo </span>${pessoa.nome}<span class="string">...&lt;/i&gt;</span><span class="string">`</span>;
+        
+        <span class="keyword">return</span> <span class="keyword">new</span> Promise((resolve, reject) =&gt; {
+            setTimeout(() =&gt; {
+                pessoas.push(pessoa);
+                <span class="keyword">if</span>(<span class="keyword">true</span>){
+                    resolve(); <span class="ST2">// Caso tenha inserido com sucesso a pessoa</span>
+                }<span class="keyword">else</span>{
+                    reject(<span class="string">&#39;</span><span class="string">Erro ao inserir pessoa!</span><span class="string">&#39;</span>); <span class="ST2">// Caso tenha falhado em inserir a pessoa</span>
+                }
+            }, <span class="constant">2000</span>);
+        });
+        
+    }
+    
+    <span class="ST2">// postPessoa eh chamado e aguarda pela Promise</span>
+    <span class="ST2">// caso a Promise tenha dado resolve, chama getPessoas</span>
+    <span class="ST2">// caso a Promise tenha dado reject, exibe erro</span>
+    postPessoa({id: <span class="constant">3</span>, nome: <span class="string">&#39;</span><span class="string">Eduardo</span><span class="string">&#39;</span>, idade: <span class="constant">25</span>}, div1)
+            .then(() =&gt; getPessoas(div1)) <span class="ST2">// resolve</span>
+            .catch(err =&gt; alert(err)); <span class="ST2">// reject</span>
+    
+}
+        </pre>
+
+        <script src="promise.js"></script>
+        <script>
+            executar_exemplo('div1');
+        </script>
+    </body>
+</html>
+
