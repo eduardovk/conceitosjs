@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Async/Await</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    <body>
+        <h1>Utilizando Async/Await</h1>
+        <hr><br>
+
+        <div id="div1">
+            <i>Forma tradicional (assíncrona): &nbsp;&nbsp;</i>
+        </div><br>
+        <div id="div2">
+            <i>Utilizando Promises (síncrono): &nbsp;&nbsp;</i>
+        </div><br>
+        <div id="div3">
+            <i>Utilizando Async/Await (síncrono): &nbsp;&nbsp;</i>
+        </div><br>
+        <br>
+
+        <pre>
+<span class="ST0">// Exemplo de utilizacao de async e await, em comparacao a outros metodos</span>
+
+<span class="keyword">function</span> <span class="ST1">executar_exemplo</span>(div1, div2, div3) {
+
+<span class="ST2">// Recebe um numero, uma div para escreve-lo, tempo de delay e uma bool</span>
+<span class="ST2">// que caso true, simula um erro na operacao</span>
+<span class="ST2">// Retorna uma promise</span>
+    <span class="keyword">function</span> <span class="ST1">escreveNum</span>(num, div, tempo, erro = <span class="keyword">false</span>) {
+        <span class="keyword">return</span> <span class="keyword">new</span> Promise((resolve, reject) =&gt; {
+            setTimeout(() =&gt; {
+                <span class="ST3">document</span>.getElementById(div).innerHTML += num + <span class="string">&#39;</span>  <span class="string">&#39;</span>;
+                <span class="keyword">if</span> (!erro) {
+                    resolve();
+                } <span class="keyword">else</span> {
+                    reject(<span class="string">&#39;</span><span class="string">Erro</span><span class="string">&#39;</span>);
+                }
+            }, tempo);
+        });
+    }
+
+<span class="ST2">// Forma tradicional, os numeros nao aparecerao em ordem pois</span>
+<span class="ST2">// estao sendo escritos de forma assincrona e nao aguardam o anterior</span>
+    <span class="keyword">function</span> <span class="ST1">escreveNumerosSemAwait</span>(div) {
+        escreveNum(<span class="constant">1</span>, div, <span class="constant">1000</span>);
+        escreveNum(<span class="constant">2</span>, div, <span class="constant">300</span>);
+        escreveNum(<span class="constant">3</span>, div, <span class="constant">100</span>);
+        escreveNum(<span class="constant">4</span>, div, <span class="constant">200</span>);
+    }
+
+<span class="ST2">// Utilizando promises, um encadeamento de then garante que</span> 
+<span class="ST2">// os numeros sejam escritos em ordem</span>
+    <span class="keyword">function</span> <span class="ST1">escreveNumerosComPromises</span>(div) {
+        escreveNum(<span class="constant">1</span>, div, <span class="constant">1000</span>)
+                .then(() =&gt; escreveNum(<span class="constant">2</span>, div, <span class="constant">300</span>)
+                            .then(() =&gt; escreveNum(<span class="constant">3</span>, div, <span class="constant">100</span>)
+                                        .then(() =&gt; escreveNum(<span class="constant">4</span>, div, <span class="constant">200</span>))))
+                .catch(err =&gt; alert(err));
+    }
+
+<span class="ST2">// com async e await, o proximo numero aguarda (await) a</span> 
+<span class="ST2">// escrita do anterior</span>
+    <span class="keyword">async</span> <span class="keyword">function</span> <span class="ST1">escreveNumerosComAwait</span>(div) {
+        <span class="keyword">await</span> escreveNum(<span class="constant">1</span>, div, <span class="constant">1000</span>);
+        <span class="keyword">await</span> escreveNum(<span class="constant">2</span>, div, <span class="constant">300</span>);
+        <span class="keyword">await</span> escreveNum(<span class="constant">3</span>, div, <span class="constant">100</span>);
+        escreveNum(<span class="constant">4</span>, div, <span class="constant">200</span>);
+    }
+
+    escreveNumerosSemAwait(div1);
+    escreveNumerosComPromises(div2);
+    escreveNumerosComAwait(div3);
+
+}
+        </pre>
+
+        <script src="async_await.js"></script>
+        <script>
+            executar_exemplo('div1', 'div2', 'div3');
+        </script>
+    </body>
+</html>
+
