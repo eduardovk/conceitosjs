@@ -4,16 +4,16 @@ function executar_exemplo(div1, div2) {
 
 // simula uma tabela de pessoas em um db
     var pessoas = [
-        {id: 1, nome: "João", idade: 45},
-        {id: 2, nome: "Felipe", idade: 28}
+        {id: 1, nome: 'João', idade: 45},
+        {id: 2, nome: 'Felipe', idade: 28}
     ];
     
     
 // simula uma requisicao GET a um webservice com tempo de resposta de 1 segundo
     function getPessoas(div, arrayPessoas) {
-        document.getElementById(div).innerHTML = "<i>buscando...</i>";
+        document.getElementById(div).innerHTML = '<i>buscando...</i>';
         setTimeout(() => {
-            var resultado = "";
+            var resultado = '';
             pessoas.forEach((pessoa, index) => {
                 resultado += `id: ${pessoa.id}  nome: ${pessoa.nome}  idade: ${pessoa.idade}<br>`;
             });
@@ -31,7 +31,7 @@ function executar_exemplo(div1, div2) {
     }
     // Executando desta forma nao ira aparecer a pessoa Eduardo no getPessoas, pois 
     // o post demora mais que o get neste exemplo, e os metodos executam de forma assincrona
-     postPessoa({id: 3, nome: "Eduardo", idade: 25}, div1);
+     postPessoa({id: 3, nome: 'Eduardo', idade: 25}, div1);
      getPessoas(div1);
 //-----------------//
 
@@ -49,7 +49,7 @@ function executar_exemplo(div1, div2) {
     // Executando desta forma, so sera exibida a lista de pessoas apos o
     // termino do POST, assim, alem da pessoa Eduardo inserida anteriormente,
     // veremos tambem a pessoa Pedro inserida nesse momento
-    postPessoaWithCallback({id: 4, nome: "Pedro", idade: 32}, getPessoas, div2);
+    postPessoaWithCallback({id: 4, nome: 'Pedro', idade: 32}, getPessoas, div2);
 //-----------------//
 
 }

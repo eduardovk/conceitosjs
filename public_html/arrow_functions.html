@@ -24,41 +24,41 @@
         <pre>
 <span class="ST0">// Resumo de utilizacao de Arrow Functions</span>
 
-<span class="ST1">function</span> <span class="ST2">executar_exemplo</span>(valores, divs){
+<span class="keyword">function</span> <span class="ST1">executar_exemplo</span>(valores, divs){
     
-    <span class="comment">// executa conforme codigo definido</span>
-    <span class="comment">// (parametros) =&gt; { codigo }</span>
-    <span class="ST1">var</span> somar = (x, y) =&gt; { <span class="ST1">return</span> x + y};
+    <span class="ST2">// executa conforme codigo definido</span>
+    <span class="ST2">// (parametros) =&gt; { codigo }</span>
+    <span class="keyword">var</span> <span class="ST1">somar</span> = (x, y) =&gt; { <span class="keyword">return</span> x + y};
     
-    <span class="comment">// ou</span>
-    <span class="comment">// executa e retorna automaticamente a expressao</span>
-    <span class="comment">// (parametros) =&gt; expressao</span>
-    <span class="ST1">var</span> multiplicar = (x, y) =&gt; x*y;
+    <span class="ST2">// ou</span>
+    <span class="ST2">// executa e retorna automaticamente a expressao</span>
+    <span class="ST2">// (parametros) =&gt; expressao</span>
+    <span class="keyword">var</span> <span class="ST1">multiplicar</span> = (x, y) =&gt; x*y;
     
-    <span class="comment">// quando houver apenas um parametro,</span>
-    <span class="comment">// nao eh necessario parenteses</span>
-    <span class="comment">// ex.:</span>
-    <span class="ST1">var</span> dobrar = x =&gt; x*<span class="constant">2</span>;
+    <span class="ST2">// quando houver apenas um parametro,</span>
+    <span class="ST2">// nao eh necessario parenteses</span>
+    <span class="ST2">// ex.:</span>
+    <span class="keyword">var</span> <span class="ST1">dobrar</span> = x =&gt; x*<span class="constant">2</span>;
     
-    document.getElementById(divs[<span class="constant">0</span>]).<span class="ST3">innerHTML</span> = <span class="string">&quot;</span><span class="string">Somar(</span><span class="string">&quot;</span>+valores[<span class="constant">0</span>]+<span class="string">&quot;</span><span class="string">,</span><span class="string">&quot;</span>+valores[<span class="constant">1</span>]+<span class="string">&quot;</span><span class="string">) = </span><span class="string">&quot;</span> + somar(valores[<span class="constant">0</span>], valores[<span class="constant">1</span>]);
-    document.getElementById(divs[<span class="constant">1</span>]).<span class="ST3">innerHTML</span> = <span class="string">&quot;</span><span class="string">Multiplicar(</span><span class="string">&quot;</span>+valores[<span class="constant">0</span>]+<span class="string">&quot;</span><span class="string">,</span><span class="string">&quot;</span>+valores[<span class="constant">1</span>]+<span class="string">&quot;</span><span class="string">) = </span><span class="string">&quot;</span> + multiplicar(valores[<span class="constant">0</span>], valores[<span class="constant">1</span>]);
-    document.getElementById(divs[<span class="constant">2</span>]).<span class="ST3">innerHTML</span> = <span class="string">&quot;</span><span class="string">Dobrar(</span><span class="string">&quot;</span>+valores[<span class="constant">0</span>]+<span class="string">&quot;</span><span class="string">) = </span><span class="string">&quot;</span> + dobrar(valores[<span class="constant">0</span>]);
+    <span class="ST3">document</span>.getElementById(divs[<span class="constant">0</span>]).innerHTML = <span class="string">`</span><span class="string">Somar(</span>${valores[<span class="constant">0</span>]}<span class="string">,</span>${valores[<span class="constant">1</span>]}<span class="string">) = </span><span class="string">`</span> + somar(valores[<span class="constant">0</span>], valores[<span class="constant">1</span>]);
+    <span class="ST3">document</span>.getElementById(divs[<span class="constant">1</span>]).innerHTML = <span class="string">`</span><span class="string">Multiplicar(</span>${valores[<span class="constant">0</span>]}<span class="string">,</span>${valores[<span class="constant">1</span>]}<span class="string">) = </span><span class="string">`</span> + multiplicar(valores[<span class="constant">0</span>], valores[<span class="constant">1</span>]);
+    <span class="ST3">document</span>.getElementById(divs[<span class="constant">2</span>]).innerHTML = <span class="string">`</span><span class="string">Dobrar(</span>${valores[<span class="constant">0</span>]}<span class="string">) = </span><span class="string">`</span> + dobrar(valores[<span class="constant">0</span>]);
     
-    <span class="comment">// utlizando arrow function com map em array</span>
-    <span class="ST1">var</span> incrementar = valores.map(valor =&gt; ++valor);
-    document.getElementById(divs[<span class="constant">3</span>]).<span class="ST3">innerHTML</span> = <span class="string">&quot;</span><span class="string">Incrementar(</span><span class="string">&quot;</span>+valores+<span class="string">&quot;</span><span class="string">) = </span><span class="string">&quot;</span> + incrementar;
+    <span class="ST2">// utlizando arrow function com map em array</span>
+    <span class="keyword">var</span> incrementar = valores.map(valor =&gt; ++valor);
+    <span class="ST3">document</span>.getElementById(divs[<span class="constant">3</span>]).innerHTML = <span class="string">`</span><span class="string">Incrementar(</span>${valores}<span class="string">) = </span><span class="string">`</span> + incrementar;
     
-    <span class="comment">//utilizando arrow function com callback</span>
-    <span class="ST1">function</span> <span class="ST2">timerDiv4</span>(texto){
-        document.getElementById(divs[<span class="constant">4</span>]).<span class="ST3">innerHTML</span> = texto;
+    <span class="ST2">//utilizando arrow function com callback</span>
+    <span class="keyword">function</span> <span class="ST1">timerDiv4</span>(texto){
+        <span class="ST3">document</span>.getElementById(divs[<span class="constant">4</span>]).innerHTML = texto;
     }
-    setTimeout((texto) =&gt; {timerDiv4(<span class="string">&quot;</span><span class="string">1 segundo!</span><span class="string">&quot;</span>);}, <span class="constant">1000</span>);
+    setTimeout((texto) =&gt; {timerDiv4(<span class="string">&#39;</span><span class="string">1 segundo!</span><span class="string">&#39;</span>);}, <span class="constant">1000</span>);
 }
-</pre>
+        </pre>
 
         <script src="arrow_functions.js"></script>
         <script>
-            executar_exemplo([2,6,5,11], ['div1', 'div2', 'div3', 'div4', 'div5']);
+            executar_exemplo([2, 6, 5, 11], ['div1', 'div2', 'div3', 'div4', 'div5']);
         </script>
     </body>
 </html>

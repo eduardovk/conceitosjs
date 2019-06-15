@@ -23,27 +23,29 @@
         <pre>
 <span class="ST0">//Resumo de utilizacao metodos call, apply, bind</span>
 
-<span class="ST1">function</span> <span class="ST2">executar_exemplo</span>(div1, div2, div3) {
+<span class="keyword">function</span> <span class="ST1">executar_exemplo</span>(div1, div2, div3) {
     
-    <span class="ST1">var</span> obj = {<span class="ST3">num</span>: <span class="constant">2</span>};
+    <span class="keyword">var</span> <span class="ST1">obj</span> = {num: <span class="constant">2</span>};
 
-    <span class="ST1">var</span> <span class="ST2">addToThis</span> = <span class="ST1">function</span> (a, b) {
-        <span class="ST1">return</span> <span class="ST1">this</span>.num + a + b;
+    <span class="keyword">var</span> <span class="ST1">addToThis</span> = <span class="keyword">function</span> (a, b) {
+        <span class="keyword">return</span> <span class="keyword">this</span>.num + a + b;
     }
 
-<span class="comment">//usando CALL, o metodo addToThis eh chamado para o objeto obj, utilizando os parametros individualmente (3, 4)</span>
-    document.getElementById(div1).innerHTML += addToThis.call(obj, <span class="constant">3</span>, <span class="constant">4</span>)
+<span class="ST2">//usando CALL, o metodo addToThis eh chamado para o objeto obj, utilizando os parametros individualmente (3, 4)</span>
+    <span class="ST3">document</span>.getElementById(div1).innerHTML += addToThis.call(obj, <span class="constant">3</span>, <span class="constant">4</span>)
 
-<span class="comment">//usando APPLY, o metodo addToThis eh chamado para o objeto obj, enviando os parametros em forma de array [3,4]</span>
-    document.getElementById(div2).innerHTML += addToThis.apply(obj, [<span class="constant">3</span>, <span class="constant">4</span>])
+<span class="ST2">//usando APPLY, o metodo addToThis eh chamado para o objeto obj, enviando os parametros em forma de array [3,4]</span>
+    <span class="ST3">document</span>.getElementById(div2).innerHTML += addToThis.apply(obj, [<span class="constant">3</span>, <span class="constant">4</span>])
 
-<span class="comment">//usando BIND, a funcao addToThis eh devolvida utilizando agora o objeto obj como &quot;this&quot;, contendo suas propriedades (num:2)</span>
-    <span class="ST1">var</span> funcao = addToThis.bind(obj)
-    document.getElementById(div3).innerHTML += funcao(<span class="constant">3</span>, <span class="constant">4</span>)
+<span class="ST2">//usando BIND, a funcao addToThis eh devolvida utilizando agora o objeto obj como &quot;this&quot;, contendo suas propriedades (num:2)</span>
+    <span class="keyword">var</span> funcao = addToThis.bind(obj)
+    <span class="ST3">document</span>.getElementById(div3).innerHTML += funcao(<span class="constant">3</span>, <span class="constant">4</span>)
     
 }
 
-        </pre>
+
+
+</pre>
 
         <script src="call_apply_bind.js"></script>
         <script>
@@ -51,8 +53,3 @@
         </script>
     </body>
 </html>
-
-
-
-
-

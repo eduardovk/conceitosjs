@@ -1,13 +1,13 @@
-body {color: #a9b7c6; background-color: #2b2b2b; font-family: Monospaced}
-pre {color: #a9b7c6; background-color: #2b2b2b; font-family: Monospaced}
-table {color: #888888; background-color: #313335; font-family: Monospaced}
-.ST0 {color: #808080; background-color: #323232}
-.whitespace {color: #505050}
-.comment {color: #808080}
-.constant {color: #6897bb}
-.ST2 {color: #ffc66d}
-.ST3 {color: #9876aa}
-.ST1 {color: #cc7832; font-family: Monospaced; font-weight: bold}
+body {color: #ffffff; background-color: #121e31; font-family: Monospaced}
+pre {color: #ffffff; background-color: #121e31; font-family: Monospaced}
+table {color: #ffffff; background-color: #121e31; font-family: Monospaced}
+.string {color: #e2ce00}
+.constant {color: #eddd3d}
+.ST1 {font-family: Monospaced; font-weight: bold}
+.ST0 {color: #428bdd; background-color: #1b3450; font-family: Monospaced; font-style: italic}
+.keyword {color: #ff6666}
+.ST3 {color: #84dddd}
+.ST2 {color: #428bdd; font-family: Monospaced; font-style: italic}
 h1{
     font-family: verdana;
 }

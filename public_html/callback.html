@@ -27,16 +27,16 @@
 
 <span class="ST2">// simula uma tabela de pessoas em um db</span>
     <span class="keyword">var</span> pessoas = [
-        {id: <span class="constant">1</span>, nome: <span class="string">&quot;</span><span class="string">João</span><span class="string">&quot;</span>, idade: <span class="constant">45</span>},
-        {id: <span class="constant">2</span>, nome: <span class="string">&quot;</span><span class="string">Felipe</span><span class="string">&quot;</span>, idade: <span class="constant">28</span>}
+        {id: <span class="constant">1</span>, nome: <span class="string">&#39;</span><span class="string">João</span><span class="string">&#39;</span>, idade: <span class="constant">45</span>},
+        {id: <span class="constant">2</span>, nome: <span class="string">&#39;</span><span class="string">Felipe</span><span class="string">&#39;</span>, idade: <span class="constant">28</span>}
     ];
     
     
 <span class="ST2">// simula uma requisicao GET a um webservice com tempo de resposta de 1 segundo</span>
     <span class="keyword">function</span> <span class="ST1">getPessoas</span>(div, arrayPessoas) {
-        <span class="ST3">document</span>.getElementById(div).innerHTML = <span class="string">&quot;</span><span class="string">&lt;i&gt;buscando...&lt;/i&gt;</span><span class="string">&quot;</span>;
+        <span class="ST3">document</span>.getElementById(div).innerHTML = <span class="string">&#39;</span><span class="string">&lt;i&gt;buscando...&lt;/i&gt;</span><span class="string">&#39;</span>;
         setTimeout(() =&gt; {
-            <span class="keyword">var</span> resultado = <span class="string">&quot;</span><span class="string">&quot;</span>;
+            <span class="keyword">var</span> resultado = <span class="string">&#39;</span><span class="string">&#39;</span>;
             pessoas.forEach((pessoa, index) =&gt; {
                 resultado += <span class="string">`</span><span class="string">id: </span>${pessoa.id}<span class="string">  nome: </span>${pessoa.nome}<span class="string">  idade: </span>${pessoa.idade}<span class="string">&lt;br&gt;</span><span class="string">`</span>;
             });
@@ -54,7 +54,7 @@
     }
     <span class="ST2">// Executando desta forma nao ira aparecer a pessoa Eduardo no getPessoas, pois</span> 
     <span class="ST2">// o post demora mais que o get neste exemplo, e os metodos executam de forma assincrona</span>
-     postPessoa({id: <span class="constant">3</span>, nome: <span class="string">&quot;</span><span class="string">Eduardo</span><span class="string">&quot;</span>, idade: <span class="constant">25</span>}, div1);
+     postPessoa({id: <span class="constant">3</span>, nome: <span class="string">&#39;</span><span class="string">Eduardo</span><span class="string">&#39;</span>, idade: <span class="constant">25</span>}, div1);
      getPessoas(div1);
 <span class="ST2">//-----------------//</span>
 
@@ -72,7 +72,7 @@
     <span class="ST2">// Executando desta forma, so sera exibida a lista de pessoas apos o</span>
     <span class="ST2">// termino do POST, assim, alem da pessoa Eduardo inserida anteriormente,</span>
     <span class="ST2">// veremos tambem a pessoa Pedro inserida nesse momento</span>
-    postPessoaWithCallback({id: <span class="constant">4</span>, nome: <span class="string">&quot;</span><span class="string">Pedro</span><span class="string">&quot;</span>, idade: <span class="constant">32</span>}, getPessoas, div2);
+    postPessoaWithCallback({id: <span class="constant">4</span>, nome: <span class="string">&#39;</span><span class="string">Pedro</span><span class="string">&#39;</span>, idade: <span class="constant">32</span>}, getPessoas, div2);
 <span class="ST2">//-----------------//</span>
 
 }
@@ -84,7 +84,6 @@
         </script>
     </body>
 </html>
-
 
 
 
