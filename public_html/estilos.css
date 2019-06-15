@@ -1,0 +1,13 @@
+body {color: #a9b7c6; background-color: #2b2b2b; font-family: Monospaced}
+pre {color: #a9b7c6; background-color: #2b2b2b; font-family: Monospaced}
+table {color: #888888; background-color: #313335; font-family: Monospaced}
+.ST0 {color: #808080; background-color: #323232}
+.whitespace {color: #505050}
+.comment {color: #808080}
+.constant {color: #6897bb}
+.ST2 {color: #ffc66d}
+.ST3 {color: #9876aa}
+.ST1 {color: #cc7832; font-family: Monospaced; font-weight: bold}
+h1{
+    font-family: verdana;
+}

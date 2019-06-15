@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div id="div3_1">Sem bind: </div>
+        <div id="div3_2">Com bind: </div>
+        <script>
+            function testeFunction1(a, b, c){
+                var args;
+                for(var i = 0; i < arguments.length; i++){
+                    args += arguments[i];
+                }
+                return args;
+            }
+            
+            var w = {
+                a:10,
+                b:function(){
+                    alert('Var W!');
+                }
+            }
+            w.c = 15;
+            
+            document.getElementById("div1").innerHTML = testeFunction1("lalala ", "nanana ", "bababa ");
+             document.getElementById("div2").innerHTML = `w.a = ${w.a}  w.c = ` + w["c"];
+             w.b(); // ou w["b"]();
+             
+        </script>
+    </body>
+</html>
+
