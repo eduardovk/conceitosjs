@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Proxy</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    <body>
+        <h1>Utilizando Proxy</h1>
+        <hr><br>
+        <div id="div1">
+            <b>Elemento 0 (get): </b> 
+        </div><br>
+        <div id="div2">
+            <b>Elemento 2 (set e get): </b>
+        </div>
+        <br>
+
+        <pre>
+<span class="ST0">// Exemplo de utilizacao de Proxy</span>
+
+<span class="keyword">function</span> <span class="ST1">executar_exemplo</span>(div1, div2) {
+
+    <span class="ST2">// o Handler sera um intermediario entre a manipulacao do alvo e o alvo em si</span>
+    <span class="keyword">var</span> <span class="ST1">handler</span> = {
+        <span class="ST2">// chamado quando acessar alguma variavel do alvo</span>
+        <span class="ST1">get</span>: (target, key) =&gt; {
+            <span class="keyword">return</span> target[key].toUpperCase();
+        },
+        <span class="ST2">// chamado quando inserido ou alterado um valor do alvo</span>
+        <span class="ST1">set</span>: (target, key, value) =&gt; {
+            target[key] = value.replace(<span class="string">&#39;</span> <span class="string">&#39;</span>, <span class="string">&#39;</span><span class="string">&#39;</span>);
+        }
+    };
+
+    <span class="keyword">var</span> <span class="ST1">alvo</span> = {
+        <span class="constant">0</span>: <span class="string">&#39;</span><span class="string">eduardo</span><span class="string">&#39;</span>,
+        <span class="constant">1</span>: <span class="string">&#39;</span><span class="string">Mateus</span><span class="string">&#39;</span>
+    };
+    
+    <span class="ST2">// eh criado um proxy que determina o alvo e o manipulador</span>
+    <span class="keyword">var</span> alvoProxy = <span class="keyword">new</span> Proxy(alvo, handler);
+    
+    <span class="ST2">// ao acessar o elemento 0 do alvo, eh acionado o get,</span> 
+    <span class="ST2">// que transforma o elemento em UPPERCASE</span>
+    <span class="ST3">document</span>.getElementById(div1).innerHTML += <span class="string">`</span><span class="string">&lt;i&gt;</span>${alvoProxy[<span class="constant">0</span>]}<span class="string">&lt;/i&gt;</span><span class="string">`</span>;
+    
+    <span class="ST2">// ao setar um valor para o elemento 2 do alvo, eh</span>
+    <span class="ST2">// acionado o set, que remove os espacos do valor</span>
+    alvoProxy[<span class="constant">2</span>] = <span class="string">&#39;</span><span class="string">joao silva</span><span class="string">&#39;</span>;
+    
+    <span class="ST2">// acionado o get para o novo valor, que vira em UPPERCASE</span>
+    <span class="ST3">document</span>.getElementById(div2).innerHTML += <span class="string">`</span><span class="string">&lt;i&gt;</span>${alvoProxy[<span class="constant">2</span>]}<span class="string">&lt;/i&gt;</span><span class="string">`</span>;
+    
+}
+        </pre>
+
+        <script src="proxy.js"></script>
+        <script>
+            executar_exemplo('div1', 'div2');
+        </script>
+    </body>
+</html>
+
