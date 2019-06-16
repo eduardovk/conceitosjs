@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Generator Function</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    <body>
+        <h1>Utilizando Generator Functions</h1>
+        <hr><br>
+        <div id="div1">
+        </div>----------
+        <div id="div2">
+        </div>----------
+        <div id="div3">
+        </div>
+        <br>
+
+        <pre>
+<span class="ST0">// Exemplo de utilizacao de Generator Functions</span>
+
+<span class="keyword">function</span> <span class="ST1">executar_exemplo</span>(div1, div2, div3) {
+
+    <span class="ST2">// Generator Function</span>
+    <span class="keyword">function</span>* <span class="ST1">func</span>(div1, div2, div3) {
+        <span class="ST3">document</span>.getElementById(div1).innerHTML += <span class="string">`</span><span class="string">&lt;b&gt;Primeiro&lt;/b&gt; next(). &lt;br&gt;</span><span class="string">`</span>;
+        <span class="keyword">var</span> y = <span class="keyword">yield</span> <span class="constant">5</span>;
+        <span class="ST3">document</span>.getElementById(div2).innerHTML += <span class="string">`</span><span class="string">&lt;b&gt;Segundo&lt;/b&gt; next(). Valor de Y: </span>${y}<span class="string">&lt;br&gt;</span><span class="string">`</span>; 
+        <span class="keyword">var</span> x = <span class="keyword">yield</span> <span class="constant">10</span>;
+        <span class="ST3">document</span>.getElementById(div3).innerHTML += <span class="string">`</span><span class="string">&lt;b&gt;Terceiro&lt;/b&gt; next(). Valor de X: </span>${x}<span class="string">&lt;br&gt;</span><span class="string">`</span>;
+        
+        <span class="ST2">// Termino</span>
+        <span class="keyword">return</span> <span class="constant">20</span>;
+        
+        <span class="ST2">// Inalcancavel</span>
+        <span class="keyword">var</span> z = <span class="keyword">yield</span> <span class="constant">30</span>;
+        <span class="ST3">document</span>.getElementById(<span class="string">&#39;</span><span class="string">xxx</span><span class="string">&#39;</span>).innerHTML += <span class="string">&#39;</span><span class="string">Este trecho nunca sera executado, pois esta apos o return</span><span class="string">&#39;</span>;
+    }
+    
+    <span class="ST2">// Diferente das funcoes tradicionais, a variavel ira</span> 
+    <span class="ST2">// receber uma generator function ao inves do retorno da funcao</span>
+    <span class="keyword">var</span> f = func(div1, div2, div3);
+
+    <span class="ST2">// Executa tudo ate o primeiro yield</span>
+    <span class="keyword">var</span> y_yield = f.next().value;
+    <span class="ST3">document</span>.getElementById(div1).innerHTML += <span class="string">&#39;</span><span class="string">&lt;i&gt;Ainda há codigo a ser executado.&lt;br&gt;Valor do yield: &lt;/i&gt;</span><span class="string">&#39;</span> + v_yield;
+    
+    <span class="ST2">// Executa desde o primeiro yield ate o segundo</span>
+    <span class="keyword">var</span> v_yield = f.next(<span class="constant">27</span>).value;
+    <span class="ST3">document</span>.getElementById(div2).innerHTML += <span class="string">&#39;</span><span class="string">&lt;i&gt;Ainda há codigo a ser executado.&lt;br&gt;Valor do yield: &lt;/i&gt;</span><span class="string">&#39;</span> + v_yield;
+    
+    <span class="ST2">// Executa do segundo yield em diante, desta vez passando um valor para o yield</span>
+    <span class="keyword">var</span> valor_return = f.next(<span class="constant">15</span>).value;
+    <span class="ST3">document</span>.getElementById(div3).innerHTML += <span class="string">&#39;</span><span class="string">&lt;i&gt;&lt;b&gt;Não&lt;/b&gt; há mais codigo a ser executado.&lt;br&gt;Valor do return: &lt;/i&gt;</span><span class="string">&#39;</span> + valor_return;
+  
+
+}
+        </pre>
+
+        <script src="generator_function.js"></script>
+        <script>
+            executar_exemplo('div1', 'div2', 'div3');
+        </script>
+    </body>
+</html>
+
